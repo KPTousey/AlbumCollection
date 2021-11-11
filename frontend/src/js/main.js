@@ -1,19 +1,20 @@
 import Header from "../components/Header";
+const headerElement = document.getElementById("navbar");
 
-const HeaderElement = document.getElementById("navbar");
 
 export default() => {
-    Helloworld();
-    SetHeader();
+    // Helloworld();
+    SetupHeader();
 
 }
 
-function Helloworld(){
-    const app = document.getElementById('app');
+// function Helloworld(){
+//     const app = document.getElementById('app');
 
-    app.innerText = "Hello World";
-}
+//     app.innerText = "Hello World";
+// }
 
-function SetHeader(){
-    HeaderElement.innerHTML = Header.Header();
+function SetupHeader(){
+    
+    headerElement.innerHTML = Header();
 }
