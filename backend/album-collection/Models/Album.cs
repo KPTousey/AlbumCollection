@@ -7,6 +7,15 @@ namespace album_collection.Models
 {
 	public class Album
 	{
+		public Album() { }
+		public Album(int id, string title, int artistid, string imageurl, string recordlabel) {
+			Id = id;
+			Title = title;
+			ArtistId = artistid;
+			ImageURL = imageurl;
+			RecordLabel = recordlabel;
+		} 
+
 		public int Id { get; set; }
 		public string Title { get; set; }
 		public int ArtistId { get; set; }
