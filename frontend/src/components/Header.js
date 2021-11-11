@@ -7,10 +7,10 @@ export function SetupNavBar(){
     return `
     <ul>
         <li id="navHome">Home</li> 
-        <li id="navAlbum">Albums</li>
-        <li id="navArtist">Artists</li>
-        <li id="navArtist">Songs</li>
-        <li id="navArtist">Reviews</li>
+        <li id="navAlbums">Albums</li>
+        <li id="navArtists">Artists</li>
+        <li id="navSongs">Songs</li>
+        <li id="navReviews">Reviews</li>
     </ul>
     `;
 }
@@ -19,6 +19,9 @@ export function SetupNavBar(){
 export function SetupHeaderEventListeners(){
    SetupHome();
    SetupAlbums();
+   SetupArtists();
+   SetupSongs();
+   SetupReviews();
 
 }
 function SetupHome(){
@@ -33,13 +36,40 @@ function SetupHome(){
 }
 
 function SetupAlbums(){
-    const btnAlbums = document.getElementById("navAlbum")
+    const btnAlbums = document.getElementById("navAlbums")
     btnAlbums.addEventListener("click", function(){
         console.log("hello")
-        fetch("")
-        .then(response => response.jason())
-        .then(data =>{
-            pageContent.innerHTML = Albums.DisplayAlbums(data); // only a placeholder. Need data
-        });
+        // fetch("")
+        // .then(response => response.jason())
+        // .then(data =>{
+        //     pageContent.innerHTML = Albums.DisplayAlbums(data); // only a placeholder. Need data
+        // });
+    });
+}
+
+
+function SetupArtists() {
+    const btnArtists = document.getElementById("navArtists")
+    btnArtists.addEventListener("click", function () {
+        console.log("this one too")
+
+    });
+}
+
+
+function SetupSongs() {
+    const btnArtists = document.getElementById("navSongs")
+    btnArtists.addEventListener("click", function () {
+        console.log("songs works")
+
+    });
+}
+
+
+function SetupReviews() {
+    const btnArtists = document.getElementById("navReviews")
+    btnArtists.addEventListener("click", function () {
+        console.log("Reviews")
+
     });
 }
