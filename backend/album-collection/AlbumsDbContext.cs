@@ -34,14 +34,14 @@ namespace album_collection
 		protected override void OnModelCreating(ModelBuilder modelbuilder)
 		{
 			modelbuilder.Entity<Album>().HasData(
-				new Album(1, "The Wall", 1, "www.tbd", "RecordLabel"),
-				new Album(2, "Out Of Step", 2, "www.tbd", "Dischord Records"),
-				new Album(3, "Not a Pretty Girl", 3, "www.url", "Riot Grrrl Records")
+				new Album(1, "The Wall", 1, "https://static.wikia.nocookie.net/pinkfloyd/images/f/f5/The_Wall.jpg/revision/latest?cb=20181104235825", "RecordLabel"),
+				new Album(2, "Out Of Step", 2, "https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/Minor_Threat_-_Out_of_Step.jpg/220px-Minor_Threat_-_Out_of_Step.jpg", "Dischord Records"),
+				new Album(3, "Not a Pretty Girl", 3, "https://cdn.shopify.com/s/files/1/0153/0645/products/notaprettygirl_1024x1024.jpeg?v=1571262453", "Riot Grrrl Records")
 				);
 			modelbuilder.Entity<Artist>().HasData(
-				new Artist(1, "Pink Floyd", "www.tbd"),
-				new Artist(2, "Minor Threat", "www.tbd"),
-				new Artist(3, "Ani DiFranco", "www.url")
+				new Artist(1, "Pink Floyd", "https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Pink_Floyd_-_all_members.jpg/250px-Pink_Floyd_-_all_members.jpg"),
+				new Artist(2, "Minor Threat", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Minor-threat-malcolm-riviera.jpg/260px-Minor-threat-malcolm-riviera.jpg"),
+				new Artist(3, "Ani DiFranco", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ani_Difranco_Ancienne_Belgique.jpg/220px-Ani_Difranco_Ancienne_Belgique.jpg")
 				);
 			modelbuilder.Entity<Review>().HasData(
 				new Review(1, "John Smith", "Pretty good!!!!!", 1),
