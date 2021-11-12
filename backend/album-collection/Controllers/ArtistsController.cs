@@ -17,12 +17,13 @@ namespace album_collection.Controllers
         {
             _db = db;
         }
-
+         
 
         [HttpGet]
         public ActionResult<IEnumerable<Artist>> Get()
         {
-            return _db.Artists.ToList();
+            var result = _db.Artists.ToList();
+            return result;
         }
 
         [HttpPost]

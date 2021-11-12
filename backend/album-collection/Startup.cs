@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace album_collection
 {
@@ -38,6 +38,11 @@ namespace album_collection
 			services.AddControllers().AddNewtonsoftJson(o =>
 			{
 				o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+				o.SerializerSettings.NullValueHandling
+							= NullValueHandling.Ignore;
+
+				o.SerializerSettings.ContractResolver
+				   = new CamelCasePropertyNamesContractResolver();
 			});
 
 	
@@ -46,7 +51,7 @@ namespace album_collection
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
