@@ -1,4 +1,4 @@
-import album from "./Album"
+import albums from "./Album"
 
 
 
@@ -56,3 +56,30 @@ export function SetupDeleteButton(){
         });
     });
 }
+
+export function SetupAddAlbum(){
+    const btnAddAlbum = document.getElementById("btnAddAlbum");
+    btnAddAlbum.addEventListener("click", function (){
+        //console.log('add artist functionality goes here...');
+        const newAlbum = {
+            Name: document.getElementById("albumName").value
+        }
+
+        fetch('https://localhost:44313/api/artists', {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(newArtist)
+        })
+        .then(response => response.json())
+        .then(data => {
+            title.innerText = "Owner Details";
+            pageContent.innerHTML = Owner.DisplayOwner(data);
+            Artist.SetupEditButton();
+        })
+        .catch(err => console.log(err));
+
+    });
+}
+

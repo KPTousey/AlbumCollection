@@ -1,7 +1,7 @@
 import Header from "../components/Header";
+
 const headerElement = document.getElementById("navbar");
 
-import Albums from "../components/Albums";
 
 
 export default() => {
