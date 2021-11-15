@@ -39,11 +39,11 @@ function SetupAlbums(){
     const btnAlbums = document.getElementById("navAlbums")
     btnAlbums.addEventListener("click", function(){
         console.log("hello")
-        // fetch("")
-        // .then(response => response.jason())
-        // .then(data =>{
-        //     pageContent.innerHTML = Albums.DisplayAlbums(data); // only a placeholder. Need data
-        // });
+        fetch("https://localhost:44313/api/albums")
+        .then(response => response.json())
+        .then(data =>{
+            pageContent.innerHTML = Albums.DisplayAlbums(data); // only a placeholder. Need data
+        });
     });
 }
 

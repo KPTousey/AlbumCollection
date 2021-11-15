@@ -11,3 +11,4 @@ function SetupHeader(){
     headerElement.innerHTML = Header.SetupNavBar();
     Header.SetupHeaderEventListeners()
 }
+
