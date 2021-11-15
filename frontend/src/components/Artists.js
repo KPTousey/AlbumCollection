@@ -1,4 +1,5 @@
 import Artist from "./Artist";
+import apiActions from "../api/apiActions"
 
 export default {
 DisplayArtists,
@@ -14,7 +15,7 @@ function DisplayArtists(artists) {
     return `
         <section class='addArtists'>
             <label><strong>Name:</strong></label>
-            <input type='text' id='ArtistName' placeholder='Enter a name for the artist' />
+            <input type='text' id='artistName' placeholder='Enter a name for the artist' />
             <button id='btnAddArtist'>Add Artist</button>
         </section>
         <ol>
@@ -65,20 +66,27 @@ export function SetupAddArtist(){
             Name: document.getElementById("artistName").value
         }
 
-        fetch('https://localhost:44313/api/artists', {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(newArtist)
-        })
-        .then(response => response.json())
-        .then(data => {
-            title.innerText = "Owner Details";
-            pageContent.innerHTML = Owner.DisplayOwner(data);
+        apiActions.postRequest("https://localhost:44313/api/artists", newArtist, data => {
+            title.innerText = "Artist Details";
+            pageContent.innerHTML = Artist.DisplayArtist(data);
             Artist.SetupEditButton();
-        })
-        .catch(err => console.log(err));
+          
+        });
 
-    });
+    //     fetch('https://localhost:44313/api/artists', {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type" : "application/json"
+    //         },
+    //         body: JSON.stringify(newArtist)
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         title.innerText = "Artist Details";
+    //         pageContent.innerHTML = Artist.DisplayArtists(data);
+    //         Artist.SetupEditButton();
+    //     })
+    //     .catch(err => console.log(err));
+
+     });
 }

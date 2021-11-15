@@ -1,4 +1,4 @@
-var Artist = null;
+var Artist;
 
 export default {
     DisplayArtist,
@@ -40,7 +40,7 @@ export function EditArtist(artist){
         <h4>Artist Name</h4>
         ${artist.albums.map(album => {
             return `
-                <input type="text" value="${album.title}" name="artist_albums" id="${album.id}" />
+                <input type="text" value="${artist.name}" name="artist_albums" id="${artist.id}" />
             `
         }).join('')}
         <button id="btnSaveArtist">Update</button>

@@ -1,5 +1,5 @@
 import Artists from "./Artists"
-
+import Albums from "./Albums"
 export default {
     SetupNavBar,
     SetupHeaderEventListeners
@@ -57,6 +57,8 @@ function SetupArtists() {
         .then(response => response.json())
         .then(data =>{
             pageContent.innerHTML = Artists.DisplayArtists(data); 
+            Artists.SetupAddArtist();
+            Artists.SetupDeleteButton();
         });
 
     });
