@@ -35,8 +35,8 @@ function DisplayArtist(artist){
 
 export function EditArtist(artist){
     return `
-        <input type="hidden" value="${artist.id}" id="owner_id" />
-        <input type="text" value="${artist.name}" id="owner_name" />
+        <input type="hidden" value="${artist.id}" id="artist_id" />
+        <input type="text" value="${artist.name}" id="artist_name" />
         <h4>Artist Name</h4>
         ${artist.albums.map(album => {
             return `

@@ -22,8 +22,6 @@ export function SetupHeaderEventListeners(){
    SetupAlbums();
    SetupArtists();
    SetupSongs();
-   SetupReviews();
-
 }
 function SetupHome(){
     const pageContent = document.getElementById("pageContent")
@@ -69,15 +67,5 @@ function SetupSongs() {
     const btnArtists = document.getElementById("navSongs")
     btnArtists.addEventListener("click", function () {
         console.log("songs works")
-
-    });
-}
-
-
-function SetupReviews() {
-    const btnArtists = document.getElementById("navReviews")
-    btnArtists.addEventListener("click", function () {
-        console.log("Reviews")
-
     });
 }

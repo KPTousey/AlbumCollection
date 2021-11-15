@@ -35,28 +35,18 @@ function DisplayArtists(artists) {
 export function SetupDeleteButton(){
     let artistDeleteButtons = document.querySelectorAll(".artist_delete");
 
-    fetch("https://localhost:44313/api/artists/" + id, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type" : "application/json"
-                }
-            })
-            .then(response => response.json())
-            .then(data =>
-            {
+    artistDeleteButtons.forEach(element => {
+        element.addEventListener('click', function(){
+            let id = element.id;
+
+            apiActions.deleteRequest("https://localhost:44313/api/artists", id, data => {
                 pageContent.innerHTML = DisplayArtists(data);
                 SetupAddArtist();
                 SetupDeleteButton();
             });
-
-    artistDeleteButtons.forEach(element => {
-        element.addEventListener('click', function(){
-            let id = element.id;}
-        )
+        });
     });
 }
-
-
 
 export function SetupAddArtist(){
     const btnAddArtist = document.getElementById("btnAddArtist");
