@@ -1,3 +1,5 @@
+import Artists from "./Artists"
+
 export default {
     SetupNavBar,
     SetupHeaderEventListeners
@@ -10,7 +12,6 @@ export function SetupNavBar(){
         <li id="navAlbums">Albums</li>
         <li id="navArtists">Artists</li>
         <li id="navSongs">Songs</li>
-        <li id="navReviews">Reviews</li>
     </ul>
     `;
 }
@@ -52,6 +53,11 @@ function SetupArtists() {
     const btnArtists = document.getElementById("navArtists")
     btnArtists.addEventListener("click", function () {
         console.log("this one too")
+        fetch("https://localhost:44313/api/artists")
+        .then(response => response.json())
+        .then(data =>{
+            pageContent.innerHTML = Artists.DisplayArtists(data); 
+        });
 
     });
 }
