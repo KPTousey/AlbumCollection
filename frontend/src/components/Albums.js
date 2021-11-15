@@ -47,6 +47,7 @@ export function SetupDeleteButton(){
                 SetupAddAlbum();
                 SetupDeleteButton();
             });
-
         });
     });
+}
+

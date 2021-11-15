@@ -5,6 +5,10 @@ DisplayArtists,
 SetupAddArtist,
 SetupDeleteButton
 }
+
+
+const pageContent = document.getElementById('pageContent');
+const title = document.getElementById('title');
  
 function DisplayArtists(artists) {
     return `
@@ -28,10 +32,53 @@ function DisplayArtists(artists) {
 }
 
 export function SetupDeleteButton(){
-    let ownerDeleteButtons = document.querySelectorAll(".owner_delete");
+    let artistDeleteButtons = document.querySelectorAll(".artist_delete");
 
-    ownerDeleteButtons.forEach(element => {
+    fetch("https://localhost:44313/api/artists/" + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type" : "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data =>
+            {
+                pageContent.innerHTML = DisplayArtists(data);
+                SetupAddArtist();
+                SetupDeleteButton();
+            });
+
+    artistDeleteButtons.forEach(element => {
         element.addEventListener('click', function(){
-            let id = element.id;
+            let id = element.id;}
+        )
+    });
+}
+
+
+
+export function SetupAddArtist(){
+    const btnAddArtist = document.getElementById("btnAddArtist");
+    btnAddArtist.addEventListener("click", function (){
+        //console.log('add artist functionality goes here...');
+        const newArtist = {
+            Name: document.getElementById("artistName").value
         }
+
+        fetch('https://localhost:44313/api/artists', {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(newArtist)
+        })
+        .then(response => response.json())
+        .then(data => {
+            title.innerText = "Owner Details";
+            pageContent.innerHTML = Owner.DisplayOwner(data);
+            Artist.SetupEditButton();
+        })
+        .catch(err => console.log(err));
+
+    });
 }
