@@ -19,6 +19,7 @@ function DisplayArtists(artists) {
             <input type='text' id='artistName' placeholder='Enter artist name' />
             <button id='btnAddArtist'>Add Artist</button>
         </section>
+        <h3>Artist List</h3>
         <ol>
             ${artists.map(artist => {
                 console.log(artist)

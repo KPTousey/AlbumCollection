@@ -1,5 +1,7 @@
 import Albums from "./Albums";
-import Artists from "./Artists"
+import Artists from "./Artists";
+import Songs from "./Songs";
+import apiActions from "../api/apiActions";
 import Album from "./Album";
 
 export default {
@@ -23,10 +25,11 @@ export function SetupNavBar(){
 
 
 export function SetupHeaderEventListeners(){
-   SetupHome();
-   SetupAlbums();
-   SetupArtists();
-//    SetupSongs();
+    SetupHome();
+    SetupAlbums();
+    SetupArtists();
+    SetupSongs();
+title.innerText = "";
 pageContent.innerHTML = `
      <h1>Hello World Productions</h1>
      <p>Welcome to our album collection!</p>
@@ -80,8 +83,13 @@ function SetupArtists() {
 
 
 function SetupSongs() {
-    const btnArtists = document.getElementById("navSongs")
-    btnArtists.addEventListener("click", function () {
+    const btnSongs = document.getElementById("navSongs")
+    btnSongs.addEventListener("click", function () {
         console.log("songs works")
+        apiActions.getRequest("https://localhost:44313/api/songs/", data => {
+            pageContent.innerHTML = Songs.DisplaySongs(data);
+
+        });
+       
     });
 }

@@ -40,7 +40,7 @@ export function EditArtist(artist){
         <h4>Artist Name</h4>
         ${artist.albums.map(artist => {
             return `
-                <input type="text" value="${artist.name}" name="artist_albums" id="${artist.id}" />
+                <input type="text" value="${artist.title}" name="artist_albums" id="${artist.id}" />
             `
         }).join('')}
         <button id="btnSaveArtist">Update</button>
