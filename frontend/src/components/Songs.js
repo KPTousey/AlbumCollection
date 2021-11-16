@@ -10,10 +10,7 @@ const title = document.getElementById('title');
  
 function DisplaySongs(songs) {
     return `
-        <section class='addSongs'>
-            <label><strong>Name:</strong></label>
-            <input type='text' id='songName' placeholder='Enter song name' />
-        </section>
+        <h3>Songs List</h3>
         <ol>
             ${songs.map(song => {
                 console.log(song)
