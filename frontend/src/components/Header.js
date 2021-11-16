@@ -1,8 +1,8 @@
 import Albums from "./Albums";
-import * as CONSTANTS from "./constants";
-import Artists from "./Artists"
-import Songs from "./Songs"
+import Artists from "./Artists";
+import Songs from "./Songs";
 import apiActions from "../api/apiActions";
+import Album from "./Album";
 
 export default {
     SetupNavBar,
@@ -57,8 +57,9 @@ function SetupAlbums(){
         fetch("https://localhost:44313/api/albums")
         .then(response => response.json())
         .then(data =>{
-            CONSTANTS.Content.innerHTML = Albums.DisplayAlbums(data);
             pageContent.innerHTML = Albums.DisplayAlbums(data); // only a placeholder. Need data
+            Albums.SetupAddAlbum();
+            Albums.SetupDeleteButton();
         });
     });
 }
