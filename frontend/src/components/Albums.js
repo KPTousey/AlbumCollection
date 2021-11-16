@@ -1,23 +1,27 @@
-import albums from "./Album"
+import Album from "./Album";
+import apiActions from "../api/apiActions"
 
 
 
 export default {
 DisplayAlbums,
-SetupDeleteButton
+SetupDeleteButton,
+SetupAddAlbum
 }
 
-export function DisplayAlbums(albums){
+const pageContent = document.getElementById('pageContent');
+const title = document.getElementById('title');
 
-
-    return `
-        <section class='addAlbum'>
+function DisplayAlbums(albums){
+return `
+        <section class='addAlbums'>
             <label><strong>Name:</strong></label>
             <input type='text' id='AlbumName' placeholder='Enter a name for the album' />
             <button id='btnAddAlbum'>Add Album</button>
         </section>
         <ol>
             ${albums.map(album => {
+                console.log(album)
                 return `
                     <li>
                         <h4>
@@ -39,16 +43,9 @@ export function SetupDeleteButton(){
         element.addEventListener('click', function(){
             let id = element.id;
 
-            fetch("https://localhost:44313/api/albums/" + id, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type" : "application/json"
-                }
-            })
-            .then(response => response.json())
-            .then(data =>
-            {
-                document.getElementById('pageContent').innerHTML = DisplayAlbums(data);
+            apiActions.deleteRequest("https://localhost:44313/api/albums/", id, data => {
+               
+                pageContent.innerHTML = DisplayAlbums(data);
                 SetupAddAlbum();
                 SetupDeleteButton();
             });
@@ -62,24 +59,15 @@ export function SetupAddAlbum(){
     btnAddAlbum.addEventListener("click", function (){
         //console.log('add artist functionality goes here...');
         const newAlbum = {
-            Name: document.getElementById("albumName").value
+            Name: document.getElementById("title").value
         }
 
-        fetch('https://localhost:44313/api/artists', {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(newArtist)
-        })
-        .then(response => response.json())
-        .then(data => {
-            title.innerText = "Owner Details";
-            pageContent.innerHTML = Owner.DisplayOwner(data);
-            Artist.SetupEditButton();
-        })
-        .catch(err => console.log(err));
+        apiActions.postRequest("https://localhost:44313/api/albums/", newAlbum, data => {
 
+            pageContent.innerHTML = Album.DisplayAlbum(data);
+            Album.SetupEditButton();
+          
+        });
     });
 }
 
