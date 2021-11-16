@@ -1,6 +1,7 @@
 import Albums from "./Albums";
 import * as CONSTANTS from "./constants";
 import Artists from "./Artists"
+import Songs from "./Songs"
 
 export default {
     SetupNavBar,
@@ -27,6 +28,7 @@ export function SetupHeaderEventListeners(){
    SetupAlbums();
    SetupArtists();
 //    SetupSongs();
+title.innerText = "";
 pageContent.innerHTML = `
      <h1>Hello World Productions</h1>
      <p>Welcome to our album collection!</p>
