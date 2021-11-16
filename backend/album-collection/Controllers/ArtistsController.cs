@@ -27,12 +27,24 @@ namespace album_collection.Controllers
         }
 
         [HttpPost]
-        public ActionResult<List<Artist>> Post([FromBody] Artist artist)
+        public ActionResult<Artist> Post([FromBody] Artist artist)
         {
             _db.Artists.Add(artist);
             _db.SaveChanges();
 
-            return _db.Artists.ToList();
+            return artist;
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Artist> Put(int id, [FromBody] Artist artist)
+        {
+            if (artist.Id == id)
+            {
+                _db.Artists.Update(artist);
+                _db.SaveChanges();
+            }
+
+            return artist;
         }
 
         [HttpDelete("{id}")]
