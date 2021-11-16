@@ -22,7 +22,7 @@ export function DisplayAlbums(albums){
                     <li>
                         <h4>
                             ${album.title} <button id="${album.id}" class="album_delete">Delete</button>
- 
+
                         </h4>
                     </li>
                 `;
@@ -52,10 +52,10 @@ export function SetupDeleteButton(){
                 SetupAddAlbum();
                 SetupDeleteButton();
             });
-
         });
     });
 }
+
 
 export function SetupAddAlbum(){
     const btnAddAlbum = document.getElementById("btnAddAlbum");
@@ -82,4 +82,5 @@ export function SetupAddAlbum(){
 
     });
 }
+
 
