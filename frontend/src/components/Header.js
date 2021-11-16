@@ -4,8 +4,11 @@ import Artists from "./Artists"
 
 export default {
     SetupNavBar,
-    SetupHeaderEventListeners
+    SetupHeaderEventListeners,
+    SetupHome
 }
+
+
 
 export function SetupNavBar(){
     return `
@@ -23,8 +26,15 @@ export function SetupHeaderEventListeners(){
    SetupHome();
    SetupAlbums();
    SetupArtists();
-   SetupSongs();
+//    SetupSongs();
+pageContent.innerHTML = `
+     <h1>Hello World Productions</h1>
+     <p>Welcome to our album collection!</p>
+     `;
 }
+
+
+
 function SetupHome(){
     const pageContent = document.getElementById("pageContent")
     const btnHome = document.getElementById("navHome");
@@ -40,6 +50,7 @@ function SetupAlbums(){
     const btnAlbums = document.getElementById("navAlbums")
     btnAlbums.addEventListener("click", function(){
         console.log("hello")
+
         fetch("https://localhost:44313/api/albums")
         .then(response => response.json())
         .then(data =>{
@@ -58,6 +69,7 @@ function SetupArtists() {
         .then(response => response.json())
         .then(data =>{
             pageContent.innerHTML = Artists.DisplayArtists(data); 
+            Artists.SetupArtistLinks();
             Artists.SetupAddArtist();
             Artists.SetupDeleteButton();
         });

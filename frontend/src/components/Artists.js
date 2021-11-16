@@ -4,7 +4,8 @@ import apiActions from "../api/apiActions"
 export default {
 DisplayArtists,
 SetupAddArtist,
-SetupDeleteButton
+SetupDeleteButton,
+SetupArtistLinks
 }
 
 
@@ -24,7 +25,7 @@ function DisplayArtists(artists) {
                 return `
                     <li>
                         <h4>
-                            ${artist.name} <button id="${artist.id}" class="artist_delete">Delete</button>
+                            <span class='artistName'>${artist.name}</span> <button id="${artist.id}" class="artist_delete">Delete</button>
                         </h4>
                     </li>
                 `;
@@ -81,4 +82,19 @@ export function SetupAddArtist(){
     //     .catch(err => console.log(err));
 
      });
+}
+
+export function SetupArtistLinks() {
+    let artistLinks = document.querySelectorAll(".artistName");
+    artistLinks.forEach(artistLink => {
+        artistLink.addEventListener("click", function(evt){
+            let artistId = this.nextElementSibling.id;
+            //API Request
+            apiActions.getRequest("https://localhost:44313/api/artists/" + artistId, data =>{
+                console.log(data);
+                pageContent.innerHTML = Artist.DisplayArtist(data);
+                Artist.SetupEditButton();
+            });
+        });
+    });
 }
