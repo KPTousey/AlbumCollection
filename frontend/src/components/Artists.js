@@ -20,6 +20,7 @@ function DisplayArtists(artists) {
         </section>
         <ol>
             ${artists.map(artist => {
+                console.log(artist)
                 return `
                     <li>
                         <h4>
@@ -39,7 +40,8 @@ export function SetupDeleteButton(){
         element.addEventListener('click', function(){
             let id = element.id;
 
-            apiActions.deleteRequest("https://localhost:44313/api/artists", id, data => {
+            apiActions.deleteRequest("https://localhost:44313/api/artists/", id, data => {
+               
                 pageContent.innerHTML = DisplayArtists(data);
                 SetupAddArtist();
                 SetupDeleteButton();
@@ -56,7 +58,7 @@ export function SetupAddArtist(){
             Name: document.getElementById("artistName").value
         }
 
-        apiActions.postRequest("https://localhost:44313/api/artists", newArtist, data => {
+        apiActions.postRequest("https://localhost:44313/api/artists/", newArtist, data => {
             title.innerText = "Artist Details";
             pageContent.innerHTML = Artist.DisplayArtist(data);
             Artist.SetupEditButton();
