@@ -17,7 +17,7 @@ export function DisplayAlbums(albums) {
                 return `
                     <li>
                         <h4>
-                            ${album.name} <button id="${album.id}" class="album_delete">Delete</button>
+                            ${album.title} <button id="${album.id}" class="album_delete">Delete</button>
                         </h4>
                     </li>
                 `;
@@ -47,6 +47,7 @@ export function SetupDeleteButton(){
                 SetupAddAlbum();
                 SetupDeleteButton();
             });
-
         });
     });
+}
+
