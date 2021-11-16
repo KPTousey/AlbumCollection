@@ -15,7 +15,7 @@ function DisplayArtists(artists) {
     return `
         <section class='addArtists'>
             <label><strong>Name:</strong></label>
-            <input type='text' id='artistName' placeholder='Enter a name for the artist' />
+            <input type='text' id='artistName' placeholder='Enter artist name' />
             <button id='btnAddArtist'>Add Artist</button>
         </section>
         <ol>
