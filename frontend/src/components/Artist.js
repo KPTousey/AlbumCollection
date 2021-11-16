@@ -19,7 +19,7 @@ function DisplayArtist(artist){
     
     return `
         <h3>${artist.name}</h3>
-        <button id="btnEditOwner">Edit</button>
+        <button id="btnEditArtist">Edit</button>
         <ul>
             ${artist.albums.map(album => {
                 return `
@@ -38,7 +38,7 @@ export function EditArtist(artist){
         <input type="hidden" value="${artist.id}" id="artist_id" />
         <input type="text" value="${artist.name}" id="artist_name" />
         <h4>Artist Name</h4>
-        ${artist.albums.map(album => {
+        ${artist.albums.map(artist => {
             return `
                 <input type="text" value="${artist.name}" name="artist_albums" id="${artist.id}" />
             `
