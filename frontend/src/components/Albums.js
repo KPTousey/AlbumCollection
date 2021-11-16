@@ -1,16 +1,20 @@
-import Album from "./Album";
-import apiActions from "../api/apiActions"
+import albums from "./Album"
+
+
 
 export default {
-
+DisplayAlbums,
+SetupDeleteButton
 }
 
-export function DisplayAlbums(albums) {
+export function DisplayAlbums(albums){
+
+
     return `
         <section class='addAlbum'>
             <label><strong>Name:</strong></label>
             <input type='text' id='AlbumName' placeholder='Enter a name for the album' />
-            <button id='btnAddOwner'>Add Owner</button>
+            <button id='btnAddAlbum'>Add Album</button>
         </section>
         <ol>
             ${albums.map(album => {
@@ -18,6 +22,7 @@ export function DisplayAlbums(albums) {
                     <li>
                         <h4>
                             ${album.title} <button id="${album.id}" class="album_delete">Delete</button>
+
                         </h4>
                     </li>
                 `;
@@ -30,7 +35,7 @@ export function DisplayAlbums(albums) {
 export function SetupDeleteButton(){
     let albumDeleteButtons = document.querySelectorAll(".album_delete");
 
-    ownerDeleteButtons.forEach(element => {
+    albumDeleteButtons.forEach(element => {
         element.addEventListener('click', function(){
             let id = element.id;
 
@@ -50,4 +55,32 @@ export function SetupDeleteButton(){
         });
     });
 }
+
+
+export function SetupAddAlbum(){
+    const btnAddAlbum = document.getElementById("btnAddAlbum");
+    btnAddAlbum.addEventListener("click", function (){
+        //console.log('add artist functionality goes here...');
+        const newAlbum = {
+            Name: document.getElementById("albumName").value
+        }
+
+        fetch('https://localhost:44313/api/artists', {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(newArtist)
+        })
+        .then(response => response.json())
+        .then(data => {
+            title.innerText = "Owner Details";
+            pageContent.innerHTML = Owner.DisplayOwner(data);
+            Artist.SetupEditButton();
+        })
+        .catch(err => console.log(err));
+
+    });
+}
+
 
