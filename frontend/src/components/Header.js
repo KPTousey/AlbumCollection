@@ -10,7 +10,7 @@ export default {
     SetupHome
 }
 
-
+var ArtistList;
 
 export function SetupNavBar(){
     return `
@@ -25,6 +25,7 @@ export function SetupNavBar(){
 
 
 export function SetupHeaderEventListeners(){
+    GetAllArtist();
     SetupHome();
     SetupAlbums();
     SetupArtists();
@@ -36,7 +37,11 @@ pageContent.innerHTML = `
      `;
 }
 
-
+function GetAllArtist(){
+    apiActions.getRequest("https://localhost:44313/api/artists/", data => {
+        ArtistList = data;
+    })
+}
 
 function SetupHome(){
     const pageContent = document.getElementById("pageContent")
@@ -57,7 +62,7 @@ function SetupAlbums(){
         fetch("https://localhost:44313/api/albums")
         .then(response => response.json())
         .then(data =>{
-            pageContent.innerHTML = Albums.DisplayAlbums(data); // only a placeholder. Need data
+            pageContent.innerHTML = Albums.DisplayAlbums(data, ArtistList); // only a placeholder. Need data
             Albums.SetupAddAlbum();
             Albums.SetupDeleteButton();
         });
