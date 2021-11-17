@@ -1,3 +1,10 @@
+import apiActions from "../api/apiActions";
+
+const pageContent = document.getElementById('pageContent');
+const title = document.getElementById('title');
+
+
+
 var Artist;
 
 export default {
@@ -7,8 +14,6 @@ export default {
 }
 
 
-const pageContent = document.getElementById('pageContent');
-const title = document.getElementById('title');
 
 function DisplayArtist(artist){
     console.log(artist);
@@ -60,19 +65,10 @@ export function SetupSaveButton(){
             Id: artistId,
             Name: artistName
         }
-
-        fetch('https://localhost:44313/api/artists/' + artistId, {
-            method: "PUT",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(editArtist)
-        })
-        .then(response => response.json())
-        .then(data => {
+        apiActions.putRequest('https://localhost:44313/api/artists/', artistId, editArtist, data => {
             pageContent.innerHTML = DisplayArtist(data);
             SetupEditButton();
-        });
+        })
     });
 }
 

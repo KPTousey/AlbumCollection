@@ -1,8 +1,6 @@
 import Album from "./Album";
 import apiActions from "../api/apiActions"
-import Artist from "./Artist";
-
-
+import Header from "./Header";
 
 export default {
 DisplayAlbums,
@@ -57,7 +55,7 @@ export function SetupDeleteButton(){
                console.log("delete successful");
                console.log(data);
                 pageContent.innerHTML = DisplayAlbums(data);
-                // figure out how to call GetAllArtsists
+                Header.GetAllArtists(); // figure out how to call GetAllArtsists
                 SetupAddAlbum();
             });
         });
