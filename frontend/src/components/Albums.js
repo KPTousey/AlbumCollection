@@ -7,22 +7,22 @@ import Artist from "./Artist";
 export default {
 DisplayAlbums,
 SetupDeleteButton,
-SetupAddAlbum
+SetupAddAlbum,
+SetupAlbumLinks
 }
 
 const pageContent = document.getElementById('pageContent');
 const title = document.getElementById('title');
 
-function DisplayAlbums(albums, artists){
+function DisplayAlbums(albums){
+
+
+
 return `
         <div class ="custom-select" style="width:200px;">
         <section class='addAlbums'>
         <select id="ArtistId">
-        ${artists.map((artist) => {
-            return `
-                <option value =${artist.id}>${artist.name}</option>
-            `;
-        })}
+        
         </select>
         </div>
             <label><strong>Name:</strong></label>
@@ -35,7 +35,7 @@ return `
                 return `
                     <li>
                         <h4>
-                            ${album.title} <button id="${album.id}" class="album_delete">Delete</button>
+                           <span class = 'albumName'> ${album.title} </span><button id="${album.id}" class="album_delete">Delete</button>
 
                         </h4>
                     </li>
@@ -54,10 +54,11 @@ export function SetupDeleteButton(){
             let id = element.id;
 
             apiActions.deleteRequest("https://localhost:44313/api/albums/", id, data => {
-               
+               console.log("delete successful");
+               console.log(data);
                 pageContent.innerHTML = DisplayAlbums(data);
+                // figure out how to call GetAllArtsists
                 SetupAddAlbum();
-                SetupDeleteButton();
             });
         });
     });
@@ -78,6 +79,21 @@ export function SetupAddAlbum(){
             pageContent.innerHTML = Album.DisplayAlbum(data);
             Album.SetupEditButton();
           
+        });
+    });
+}
+
+export function SetupAlbumLinks() {
+    let albumLinks = document.querySelectorAll(".albumName");
+    albumLinks.forEach(albumLink => {
+        albumLink.addEventListener("click", function(evt){
+            let albumId = this.nextElementSibling.id;
+            //API Request
+            apiActions.getRequest("https://localhost:44313/api/albums/" + albumId, data =>{
+                console.log(data);
+                pageContent.innerHTML = Album.DisplayAlbum(data);
+                Album.SetupEditButton();
+            });
         });
     });
 }

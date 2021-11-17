@@ -19,7 +19,8 @@ function DisplayAlbum(album){
     
     return `
         <h3>${album.title}</h3>
-        <button id="btnEditalbum">Edit</button>
+        <img src="${album.imageURL}" alt="">
+        <button id="btnEditAlbum">Edit</button>
         <ul>
             ${album.artists.map(album => {
                 return `
@@ -34,13 +35,15 @@ function DisplayAlbum(album){
 
 
 export function EditAlbum(album){
+    console.log(album);
     return `
+        <input type="hidden" value='${album.artistId}' id="artist_id" />
         <input type="hidden" value="${album.id}" id="album_id" />
         <input type="text" value="${album.title}" id="album_title" />
         <h4>Album title</h4>
         ${album.artists.map(album => {
             return `
-                <input type="text" value="${album.title}" title="album_albums" id="${album.id}" />
+                <input type="text" value="${album.title}" name="album_albums" id="${album.id}" />
             `
         }).join('')}
         <button id="btnSaveAlbum">Update</button>
@@ -53,11 +56,14 @@ export function SetupSaveButton(){
     btnSave.addEventListener("click", function(){
         let albumId = document.getElementById("album_id").value;
         let albumtitle = document.getElementById("album_title").value;
-
+        let artistId = document.getElementById("artist_id").value;
         const editAlbum = {
             Id: albumId,
-            title: albumtitle
+            ArtistId: artistId,
+            Title: albumtitle
         }
+
+        
 
         fetch('https://localhost:44313/api/albums/' + albumId, {
             method: "PUT",
