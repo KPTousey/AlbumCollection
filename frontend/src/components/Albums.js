@@ -7,7 +7,8 @@ import Artist from "./Artist";
 export default {
 DisplayAlbums,
 SetupDeleteButton,
-SetupAddAlbum
+SetupAddAlbum,
+SetupAlbumLinks
 }
 
 const pageContent = document.getElementById('pageContent');
@@ -35,7 +36,7 @@ return `
                 return `
                     <li>
                         <h4>
-                            ${album.title} <button id="${album.id}" class="album_delete">Delete</button>
+                           <span class = 'albumName'> ${album.title} </span><button id="${album.id}" class="album_delete">Delete</button>
 
                         </h4>
                     </li>
@@ -78,6 +79,21 @@ export function SetupAddAlbum(){
             pageContent.innerHTML = Album.DisplayAlbum(data);
             Album.SetupEditButton();
           
+        });
+    });
+}
+
+export function SetupAlbumLinks() {
+    let albumLinks = document.querySelectorAll(".albumName");
+    albumLinks.forEach(albumLink => {
+        albumLink.addEventListener("click", function(evt){
+            let albumId = this.nextElementSibling.id;
+            //API Request
+            apiActions.getRequest("https://localhost:44313/api/albums/" + albumId, data =>{
+                console.log(data);
+                pageContent.innerHTML = Album.DisplayAlbum(data);
+                Album.SetupEditButton();
+            });
         });
     });
 }

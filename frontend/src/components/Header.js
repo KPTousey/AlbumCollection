@@ -63,6 +63,7 @@ function SetupAlbums(){
         .then(response => response.json())
         .then(data =>{
             pageContent.innerHTML = Albums.DisplayAlbums(data, ArtistList); // only a placeholder. Need data
+            Albums.SetupAlbumLinks();
             Albums.SetupAddAlbum();
             Albums.SetupDeleteButton();
         });
