@@ -13,15 +13,15 @@ const title = document.getElementById('title');
 function DisplayAlbum(album){
     console.log(album);
     Album = album;
-    if(album.albums == null){
-        album.albums = [];
+    if(album.artist == null){
+        album.artist= [];
     }
     
     return `
         <h3>${album.title}</h3>
         <button id="btnEditalbum">Edit</button>
         <ul>
-            ${album.albums.map(album => {
+            ${album.artist.map(album => {
                 return `
                     <li>
                         ${album.title}

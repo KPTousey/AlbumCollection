@@ -19,12 +19,14 @@ function DisplayArtist(artist){
     
     return `
         <h3>${artist.name}</h3>
+        <img src="${artist.imageURL}" alt="">
         <button id="btnEditArtist">Edit</button>
         <ul>
             ${artist.albums.map(album => {
                 return `
                     <li>
                         ${album.title}
+                        
                     </li>
                 `
             }).join('')}

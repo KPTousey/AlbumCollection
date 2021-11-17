@@ -14,7 +14,6 @@ const pageContent = document.getElementById('pageContent');
 const title = document.getElementById('title');
 
 function DisplayAlbums(albums, artists){
-    console.log(artists)
 return `
         <div class ="custom-select" style="width:200px;">
         <section class='addAlbums'>
@@ -57,7 +56,7 @@ export function SetupDeleteButton(){
             apiActions.deleteRequest("https://localhost:44313/api/albums/", id, data => {
                
                 pageContent.innerHTML = DisplayAlbums(data);
-                SetupAddAlbum();
+                //SetupAddAlbum();
                 SetupDeleteButton();
             });
         });
@@ -70,8 +69,8 @@ export function SetupAddAlbum(){
     btnAddAlbum.addEventListener("click", function (){
         //console.log('add artist functionality goes here...');
         const newAlbum = {
-            Name: document.getElementById("title").value
-            //artistId: document.getElementById("ArtistId").value,
+            Name: document.getElementById("title").value,
+            artistId: document.getElementById("ArtistId").value
         }
 
         apiActions.postRequest("https://localhost:44313/api/albums/", newAlbum, data => {
