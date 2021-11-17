@@ -6,7 +6,8 @@ import apiActions from "../api/apiActions";
 export default {
     SetupNavBar,
     SetupHeaderEventListeners,
-    SetupHome
+    SetupHome,
+    GetAllArtists
 }
 
 var ArtistList;
@@ -50,16 +51,14 @@ function SetupAlbums(){
     const btnAlbums = document.getElementById("navAlbums")
     btnAlbums.addEventListener("click", function(){
         console.log("hello")
-
-        fetch("https://localhost:44313/api/albums")
-        .then(response => response.json())
-        .then(data =>{
+        apiActions.getRequest("https://localhost:44313/api/albums/", data => {
             pageContent.innerHTML = Albums.DisplayAlbums(data);
             GetAllArtists();
             Albums.SetupAlbumLinks();
             Albums.SetupAddAlbum();
             Albums.SetupDeleteButton();
         });
+        
     });
 }
 
@@ -81,13 +80,12 @@ function SetupArtists() {
     const btnArtists = document.getElementById("navArtists")
     btnArtists.addEventListener("click", function () {
         console.log("this one too")
-        fetch("https://localhost:44313/api/artists")
-        .then(response => response.json())
-        .then(data =>{
+      
+        apiActions.getRequest('https://localhost:44313/api/artists/', data =>{
             pageContent.innerHTML = Artists.DisplayArtists(data); 
-            Artists.SetupArtistLinks();
-            Artists.SetupAddArtist();
-            Artists.SetupDeleteButton();
+                Artists.SetupArtistLinks();
+                Artists.SetupAddArtist();
+                Artists.SetupDeleteButton();
         });
 
     });

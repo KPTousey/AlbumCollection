@@ -1,6 +1,9 @@
 import Artist from "./Artist";
 import apiActions from "../api/apiActions"
 
+const pageContent = document.getElementById('pageContent');
+const title = document.getElementById('title');
+
 export default {
 DisplayArtists,
 SetupAddArtist,
@@ -9,8 +12,7 @@ SetupArtistLinks
 }
 
 
-const pageContent = document.getElementById('pageContent');
-const title = document.getElementById('title');
+
  
 function DisplayArtists(artists) {
     return `
@@ -66,21 +68,6 @@ export function SetupAddArtist(){
             Artist.SetupEditButton();
           
         });
-
-    //     fetch('https://localhost:44313/api/artists', {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type" : "application/json"
-    //         },
-    //         body: JSON.stringify(newArtist)
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         title.innerText = "Artist Details";
-    //         pageContent.innerHTML = Artist.DisplayArtists(data);
-    //         Artist.SetupEditButton();
-    //     })
-    //     .catch(err => console.log(err));
 
      });
 }

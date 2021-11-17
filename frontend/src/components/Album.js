@@ -1,3 +1,5 @@
+import apiActions from "../api/apiActions";
+
 var Album;
 
 export default {
@@ -62,24 +64,12 @@ export function SetupSaveButton(){
             ArtistId: artistId,
             Title: albumtitle
         }
-
-        
-
-        fetch('https://localhost:44313/api/albums/' + albumId, {
-            method: "PUT",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(editAlbum)
-        })
-        .then(response => response.json())
-        .then(data => {
+        apiActions.putRequest('https://localhost:44313/api/albums/', albumId, editAlbum, data => {
             pageContent.innerHTML = DisplayAlbum(data);
             SetupEditButton();
         });
     });
 }
-
 export function SetupEditButton(){
     let btnEdit = document.getElementById("btnEditAlbum");
     btnEdit.addEventListener("click", function(){
