@@ -13,15 +13,15 @@ const title = document.getElementById('title');
 function DisplayAlbum(album){
     console.log(album);
     Album = album;
-    if(album.artist == null){
-        album.artist= [];
+    if(album.artists == null){
+        album.artists= [];
     }
     
     return `
         <h3>${album.title}</h3>
         <button id="btnEditalbum">Edit</button>
         <ul>
-            ${album.artist.map(album => {
+            ${album.artists.map(album => {
                 return `
                     <li>
                         ${album.title}
@@ -38,7 +38,7 @@ export function EditAlbum(album){
         <input type="hidden" value="${album.id}" id="album_id" />
         <input type="text" value="${album.title}" id="album_title" />
         <h4>Album title</h4>
-        ${album.albums.map(album => {
+        ${album.artists.map(album => {
             return `
                 <input type="text" value="${album.title}" title="album_albums" id="${album.id}" />
             `

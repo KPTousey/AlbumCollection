@@ -56,7 +56,7 @@ export function SetupDeleteButton(){
             apiActions.deleteRequest("https://localhost:44313/api/albums/", id, data => {
                
                 pageContent.innerHTML = DisplayAlbums(data);
-                //SetupAddAlbum();
+                SetupAddAlbum();
                 SetupDeleteButton();
             });
         });
@@ -69,8 +69,8 @@ export function SetupAddAlbum(){
     btnAddAlbum.addEventListener("click", function (){
         //console.log('add artist functionality goes here...');
         const newAlbum = {
-            Name: document.getElementById("title").value,
-            artistId: document.getElementById("ArtistId").value
+            Title: document.getElementById("AlbumName").value,
+            ArtistId: document.getElementById("ArtistId").value
         }
 
         apiActions.postRequest("https://localhost:44313/api/albums/", newAlbum, data => {
