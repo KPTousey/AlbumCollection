@@ -2,7 +2,6 @@ import Albums from "./Albums";
 import Artists from "./Artists";
 import Songs from "./Songs";
 import apiActions from "../api/apiActions";
-import Album from "./Album";
 
 export default {
     SetupNavBar,
@@ -25,7 +24,6 @@ export function SetupNavBar(){
 
 
 export function SetupHeaderEventListeners(){
-    GetAllArtist();
     SetupHome();
     SetupAlbums();
     SetupArtists();
@@ -35,12 +33,6 @@ pageContent.innerHTML = `
      <h1>Hello World Productions</h1>
      <p>Welcome to our album collection!</p>
      `;
-}
-
-function GetAllArtist(){
-    apiActions.getRequest("https://localhost:44313/api/artists/", data => {
-        ArtistList = data;
-    })
 }
 
 function SetupHome(){
@@ -62,12 +54,26 @@ function SetupAlbums(){
         fetch("https://localhost:44313/api/albums")
         .then(response => response.json())
         .then(data =>{
-            pageContent.innerHTML = Albums.DisplayAlbums(data, ArtistList); // only a placeholder. Need data
+            pageContent.innerHTML = Albums.DisplayAlbums(data);
+            GetAllArtists();
             Albums.SetupAlbumLinks();
             Albums.SetupAddAlbum();
             Albums.SetupDeleteButton();
         });
     });
+}
+
+function GetAllArtists(){
+    let ddlArtists = document.getElementById("ArtistId");
+
+    apiActions.getRequest('https://localhost:44313/api/artists/', artists =>{
+        artists.forEach(artist => {
+            let option = document.createElement("option");
+            option.value = artist.id;
+            option.text = artist.name;
+            ddlArtists.appendChild(option);
+        });
+    })
 }
 
 
