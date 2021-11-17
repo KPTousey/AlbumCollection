@@ -1,5 +1,6 @@
 import Album from "./Album";
 import apiActions from "../api/apiActions"
+import Artist from "./Artist";
 
 
 
@@ -12,9 +13,19 @@ SetupAddAlbum
 const pageContent = document.getElementById('pageContent');
 const title = document.getElementById('title');
 
-function DisplayAlbums(albums){
+function DisplayAlbums(albums, artists){
+    console.log(artists)
 return `
+        <div class ="custom-select" style="width:200px;">
         <section class='addAlbums'>
+        <select id="ArtistId">
+        ${artists.map((artist) => {
+            return `
+                <option value =${artist.id}>${artist.name}</option>
+            `;
+        })}
+        </select>
+        </div>
             <label><strong>Name:</strong></label>
             <input type='text' id='AlbumName' placeholder='Enter a name for the album' />
             <button id='btnAddAlbum'>Add Album</button>
@@ -60,6 +71,7 @@ export function SetupAddAlbum(){
         //console.log('add artist functionality goes here...');
         const newAlbum = {
             Name: document.getElementById("title").value
+            //artistId: document.getElementById("ArtistId").value,
         }
 
         apiActions.postRequest("https://localhost:44313/api/albums/", newAlbum, data => {
