@@ -26,12 +26,12 @@ function DisplayArtist(artist){
         <h3>${artist.name}</h3>
         <img src="${artist.imageURL}" alt="">
         <button id="btnEditArtist">Edit</button>
+        <h4>Albums</h4>
         <ul>
             ${artist.albums.map(album => {
                 return `
                     <li>
                         ${album.title}
-                        
                     </li>
                 `
             }).join('')}
@@ -42,12 +42,12 @@ function DisplayArtist(artist){
 
 export function EditArtist(artist){
     return `
+    <h4>Artist Name</h4>
         <input type="hidden" value="${artist.id}" id="artist_id" />
         <input type="text" value="${artist.name}" id="artist_name" />
-        <h4>Artist Name</h4>
         ${artist.albums.map(artist => {
             return `
-                <input type="text" value="${artist.title}" name="artist_albums" id="${artist.id}" />
+                <input type="text" value="${artist.title}" name="artist_albums" id="${artist.id}" class="zero" disabled />
             `
         }).join('')}
         <button id="btnSaveArtist">Update</button>

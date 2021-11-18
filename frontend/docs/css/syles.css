@@ -20,7 +20,8 @@ header {
 }
 
 ul, li {
-    width: 30vh;
+    width: 50vh;
+    margin: 0 auto;
 }
 
 input {
@@ -35,6 +36,15 @@ input {
 
 li {
     margin: 0 4em;
+}
+
+.zero {
+    border: 0;
+}
+
+#ArtistId {
+    position: relative;
+    top: 60px;
 }
 
 button {

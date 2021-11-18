@@ -39,10 +39,11 @@ function DisplayAlbum(album){
 export function EditAlbum(album){
     console.log(album);
     return `
+    <h4>Album title</h4>
         <input type="hidden" value='${album.artistId}' id="artist_id" />
         <input type="hidden" value="${album.id}" id="album_id" />
         <input type="text" value="${album.title}" id="album_title" />
-        <h4>Album title</h4>
+      
         ${album.artists.map(album => {
             return `
                 <input type="text" value="${album.title}" name="album_albums" id="${album.id}" />
