@@ -18,6 +18,9 @@ function DisplayAlbum(album){
     if(album.artists == null){
         album.artists= [];
     }
+    if(album.reviews ==null){
+        album.reviews=[];
+    }
     
     return `
         <h3>${album.title}</h3>
@@ -28,6 +31,17 @@ function DisplayAlbum(album){
                 return `
                     <li>
                         ${album.title}
+                    </li>
+                `
+            }).join('')}
+        </ul>
+            <h3>Reviews</h3>
+        <ul>
+            ${album.reviews.map(review => {
+                return `
+                    <li>
+                        
+                    <h4>Name: ${review.reviewerName}</h4><p>${review.content}</p>
                     </li>
                 `
             }).join('')}
