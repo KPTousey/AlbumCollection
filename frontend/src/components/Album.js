@@ -35,6 +35,8 @@ function DisplayAlbum(album){
                 `
             }).join('')}
         </ul>
+        
+        <div id="reviewBox">
             <h3>Reviews</h3>
         <ul>
             ${album.reviews.map(review => {
@@ -46,6 +48,7 @@ function DisplayAlbum(album){
                 `
             }).join('')}
         </ul>
+        </div>
     `
 }
 

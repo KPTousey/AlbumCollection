@@ -13,9 +13,6 @@ const pageContent = document.getElementById('pageContent');
 const title = document.getElementById('title');
 
 function DisplayAlbums(albums){
-
-
-
 return `
         <div class ="custom-select" style="width:200px;">
         <section class='addAlbums'>
